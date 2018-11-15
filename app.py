@@ -23,6 +23,7 @@ class Customer(db.Model):
         self.address = address
         self.password = password
 
+
 class Album(db.Model):
     artist = db.Column(db.String(30))
     album_name = db.Column(db.String(30), primary_key=True)
@@ -105,6 +106,13 @@ def post_register():
     db.session.commit()
 
     return render_template("login.html")
+
+
+@app.route("users/signin", methods=["POST"])
+def post_login():
+    data = request.json
+    username = data['username']
+    password = data['password']
 
 
 if __name__ == '__main__':
